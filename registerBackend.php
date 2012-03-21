@@ -29,7 +29,7 @@ $lastname = mysql_real_escape_string(str_replace($search, $replace, $_POST['last
 
 $checkEmail = 'SELECT * FROM `user` WHERE `email`="'.$email.'";';
 
-$check = mysql_query($checkEmail) or die(mysql_error);
+$check = mysql_query($checkEmail) or die(mysql_error());
 if (mysql_num_rows($check)>0){
 	header('Location: register.php?error=3');//e-mail is already used
 	exit;

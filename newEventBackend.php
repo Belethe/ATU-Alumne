@@ -18,7 +18,7 @@ $organizer = mysql_real_escape_string(loginId()); //Should I escape this, or is 
 
 $checkTitle = 'SELECT * FROM `event` WHERE `title`="'.$title.'";';
 
-$check = mysql_query($checkTitle) or die(mysql_error);
+$check = mysql_query($checkTitle) or die(mysql_error());
 if (mysql_num_rows($check)>0){
         header('Location: newEvent.php?error=2'); //another event is already using that title
         exit;
