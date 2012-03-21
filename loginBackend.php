@@ -26,7 +26,7 @@ if(mysql_num_rows($result) < 1) {
 	exit;
 }
 $row = mysql_fetch_array($result); //Henter valgte data fra databasen
-login($row['id'], $row['firstname'], $row['lastname']);
+login($row['id'], $row['firstname'], $row['lastname'], $row['admin']);
 	
 header('Location: '.$_GET['redirect']);
 exit;

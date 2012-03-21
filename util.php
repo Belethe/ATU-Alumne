@@ -47,9 +47,10 @@ function foot() {
 	<?php
 }
 
-function login($id, $fname = "naN", $lname = "naN") {
+function login($id, $fname = "naN", $lname = "naN", $admin = 0) {
 	$_SESSION['LoggedIn'] = $id;
 	$_SESSION['Name'] = $fname." ".$lname;
+	$_SESSION['Admin'] = $admin;
 }
 
 function loginId() {
@@ -60,7 +61,18 @@ function loginId() {
 }
 
 function loginName() {
+	if(!isset($_SESSION['Name'])){
+		$_SESSION['Name'] = "naN";
+	}
 	return $_SESSION['Name'];
 }
+
+function loginAdmin() {
+        if(!isset($_SESSION['Admin'])){
+                $_SESSION['Admin'] = 0;
+        }
+        return $_SESSION['Admin'];
+}
+
 
 ?>
