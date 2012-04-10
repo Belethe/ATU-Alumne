@@ -41,7 +41,7 @@ if(isset($_POST['eventId'])){
 	}
 }
 
-$findEvents = "SELECT * FROM `event` ORDER BY `date`";
+$findEvents = "SELECT * FROM `event` ORDER BY `date`;";
 $result = mysql_query($findEvents) or die(mysql_error());
 
 echo"<br />";
@@ -58,7 +58,7 @@ echo"<table>";
 	while($row=mysql_fetch_array($result)){
 		echo '<tr>
 			<td>'.$row["date"].'</td>
-			<td>'.$row["title"].'</td>
+			<td><a href="showEvent?id='.$row["id"].'">'.$row["title"].'</a></td>
 			<td>'.$row["time"].'</td>
 			<td>'.$row["place"].'</td>';
 		if(loginId()){

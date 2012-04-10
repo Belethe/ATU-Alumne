@@ -68,10 +68,10 @@ function loginName() {
 }
 
 function loginAdmin() {
-        if(!isset($_SESSION['Admin'])){
-                $_SESSION['Admin'] = 0;
-        }
-        return $_SESSION['Admin'];
+	if(!isset($_SESSION['Admin'])){
+		$_SESSION['Admin'] = 0;
+	}
+	return $_SESSION['Admin'];
 }
 
 
