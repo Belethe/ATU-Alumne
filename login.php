@@ -19,7 +19,7 @@ if(isset($_GET['error'])){
 			break;
 			
 		case 3:
-			echo '<span style="color:red;">Du skal være logget ind for at udfører denne handling!</span><br /><br />';
+			echo '<span style="color:red;">Du skal v&aelig;re logget ind for at udf&oslash;rer denne handling!</span><br /><br />';
 			break;
 
 		case 4:
@@ -47,7 +47,7 @@ if(isset($_GET['error'])){
 	<input type="submit" value="Login" />
 </form>
 
-Ingen bruger endnu? <a href="register.php">Registrer dig her!</a>
+Ingen bruger endnu? <a href="register.php?redirect=<?php echo $_GET['redirect']?>">Registrer dig her!</a>
 
 <?php
 foot();

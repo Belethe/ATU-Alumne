@@ -20,7 +20,7 @@ if(isset($_GET['error'])){
 	echo '</span><br /><br />';
 }
 
-if(isset($_POST['eventId'])){
+/*if(isset($_POST['eventId'])){ //Move to showEvent.php
 	$checkEmail = 'SELECT * FROM `subscribe` WHERE `userId`="'.loginId().'" AND `eventId`="'.$_POST['eventId'].'";';
 	$check = mysql_query($checkEmail) or die(mysql_error());
 	if (mysql_num_rows($check)>0){
@@ -39,7 +39,7 @@ if(isset($_POST['eventId'])){
 		header('Location: events.php');
 		exit;
 	}
-}
+}*/
 
 $findEvents = "SELECT * FROM `event` ORDER BY `date`;";
 $result = mysql_query($findEvents) or die(mysql_error());
@@ -51,9 +51,9 @@ echo"<table>";
 		<td><b>Titel:</b></td>
 		<td><b>Time:</b></td>
 		<td><b>Place:</b></td>';
-	if(loginId()){
+	/*if(loginId()){ //move to showEvent.php
 		echo'<td><b>Tilmeld:</b></td>';
-	}
+	}*/
 	echo'</tr>';
 	while($row=mysql_fetch_array($result)){
 		echo '<tr>
@@ -61,7 +61,7 @@ echo"<table>";
 			<td><a href="showEvent?id='.$row["id"].'">'.$row["title"].'</a></td>
 			<td>'.$row["time"].'</td>
 			<td>'.$row["place"].'</td>';
-		if(loginId()){
+		/*if(loginId()){ //move to ShowEvent.php
 			?>
 			<td>
 			<form action="events.php" method="post">
@@ -70,7 +70,7 @@ echo"<table>";
 			</form>
 			</td>
 			<?php
-		}
+		}*/
 		echo '</tr>';
 	}
 echo '</table>';

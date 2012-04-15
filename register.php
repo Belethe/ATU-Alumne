@@ -2,6 +2,11 @@
 require_once('util.php');
 head('Registrer');
 
+//Needs to set redirect, if it isn't already
+if(!isset($_GET['redirect'])){
+	        $_GET['redirect'] = '/Alumne/index.php';
+}
+
 //Checks if loginBackend has noticed any errors, if it has, it gives a fitting errormessage
 if(isset($_GET['error'])){
 	switch($_GET['error']){
@@ -25,7 +30,7 @@ if(isset($_GET['error'])){
 
 ?>
 <h1>Registrer ny bruger</h1>
-<form method="post" action="registerBackend.php">
+<form method="post" action="registerBackend.php?redirect=<?php echo $_GET['redirect']?>">
 	E-mail (dette vil blive dit brugernavn): <br />
 	<input maxlength="30" type="text" name="email" /><br /><br />
 	Password: <br />

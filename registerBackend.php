@@ -7,6 +7,11 @@ head();
 echo'backend ';
 echo $_POST['email'].' '.$_POST['password1'].' '.$_POST['password2'].' '.$_POST['firstname'].' '.$_POST['lastname'];*/
 
+//Needs to set redirect, if it isn't already
+if(!isset($_GET['redirect'])){
+	            $_GET['redirect'] = '/Alumne/index.php';
+}
+
 //Check that no fields are empty
 if(!$_POST['email'] || !$_POST['password1'] || !$_POST['password2'] || !$_POST['firstname'] || !$_POST['lastname']){
 	header('Location: register.php?error=1');
@@ -37,7 +42,7 @@ if (mysql_num_rows($check)>0){
 
 $newUser = 'INSERT INTO `user` (email,password,firstname,lastname) VALUES ("'.$email.'","'.$password.'","'.$firstname.'","'.$lastname.'");';
 if(mysql_query($newUser)){
-	header('Location: login.php?error=4');
+	header('Location: login.php?error=4&redirect='.$_GET['redirect']);
 	exit;
 }
 
