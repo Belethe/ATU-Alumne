@@ -54,6 +54,10 @@ if(isset($_GET['message'])){
 			echo 'Du er meldt fra';
 			break;
 
+		case 3:
+			echo 'Arrangement er blevet opdateret';
+			break;
+
         default:
 			echo 'Noget gik galt';
 			break;
@@ -65,8 +69,13 @@ $find = 'SELECT * FROM `event` WHERE `id` = "'.$_GET['id'].'";';
 $result = mysql_query($find) or die(mysql_error());
 $row=mysql_fetch_array($result);
 
+$findOrganizer = 'SELECT `firstname`, `lastname` FROM `user` WHERE `id`='.$row['organizer'].' ORDER BY `firstname`;';
+$organizerResult = mysql_query($findOrganizer) or die(mysql_error());
+$organizer = mysql_fetch_array($organizerResult);
+
 echo '<h1>'.$row['title'].'</h1>';
-echo '<i>'.$row['place'].'</i><br />';
+echo '<i>Arrang&oslash;r: '.$organizer['firstname'].' '.$organizer['lastname'].'</i><br />';
+echo $row['place'].'<br />';
 echo $row['date'].' '.$row['time'].'<br />';
 echo 'Beskrivelse: '.$row['description'].'<br />';
 
@@ -76,5 +85,14 @@ echo 'Beskrivelse: '.$row['description'].'<br />';
 	<input type="submit" value="<?php if ($status == 'unsubscribe' || $status == 'new') {echo 'Tilmeld';}else{echo 'Meld fra';} ?>" />
 </form>
 <?php
+
+if(loginId() == $row['organizer'] || loginAdmin()){
+	?>
+	<form action="editEvent.php?id=<?php echo $_GET['id']; ?>" method="POST">
+		<input type="submit" value="Rediger event" />
+	</form>
+	<?php
+}
+
 foot();
 ?>

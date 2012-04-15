@@ -75,8 +75,11 @@ echo"<table>";
 	}
 echo '</table>';
 
-?>
-<a href="newEvent.php">Opret nyt arrangement?</a>
-<?php
+if(loginAdmin()){
+	?>
+	<a href="newEvent.php">Opret nyt arrangement?</a>
+	<?php
+}
+
 foot();
 ?>

@@ -2,7 +2,7 @@
 require_once('util.php');
 head();
 	
-if(!isset($_GET['redirect'])){
+if(!isset($_GET['redirect']) || $_GET['redirect'] == '/Alumne/login.php' || $_GET['redirect'] == 'login.php'){
         $_GET['redirect'] = '/Alumne/index.php';
 }
 	
