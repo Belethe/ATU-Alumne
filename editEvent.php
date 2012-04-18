@@ -25,18 +25,27 @@ if(isset($_GET['error'])){
 			break;
 			
 		case 2:
-			echo 'Der findes allerede et arrangement med det navn!';
+			echo 'Der findes allerede et andet arrangement med det navn!';
 			break;
 
 		case 3:
 			echo 'Arrang&oslash;ren kunne ikke findes.';
 			break;
 
+		case 4:
+			echo 'Fil-typen er ikke tilladt.';
+			break;
+
+		case 5:
+			echo 'Filen er uploadet';
+			break;
+
 		default:
 		    echo 'Ukendt fejl';
+			break;
 		    break;
 	}
-	echo '</span><br /><br />';
+	echo '</span>';
 }
 
 $findUsers = 'SELECT `id`, `firstname`, `lastname` FROM `user` ORDER BY `firstname`;';
@@ -71,6 +80,15 @@ $UserResult = mysql_query($findUsers) or die(mysql_error());
 	</select><br />
 	<input type="submit" value="Opdater" />
 </form>
+
+<h3>Upload filer til arrangementet</h3>
+<form action="uploadFile.php" method="post" enctype="multipart/form-data">
+	Fil:<br />
+	<input type="hidden" name="id" value="<?php echo $_GET['id'] ?>" />
+	<input type="file" name="file" id="file" /><br />
+	<input type="submit" name="submit" value="Upload" />
+</form>
+
 <?php
 
 foot();

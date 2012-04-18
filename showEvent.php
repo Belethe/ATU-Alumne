@@ -88,10 +88,28 @@ echo 'Beskrivelse: '.$row['description'].'<br />';
 
 if(loginId() == $row['organizer'] || loginAdmin()){
 	?>
-	<form action="editEvent.php?id=<?php echo $_GET['id']; ?>" method="POST">
+	<form action="editEvent.php" method="GET">
+		<input type="hidden" name="id" value="<?php echo $_GET['id']; ?>" />
 		<input type="submit" value="Rediger event" />
 	</form>
 	<?php
+}
+
+
+//Files
+echo'<h3>Documenter</h3>';
+
+$findFiles = 'SELECT * FROM `file` WHERE `eventId` = "'.$_GET['id'].'";';
+$files = mysql_query($findFiles) or die(mysql_error());
+
+if (!mysql_num_rows($files)){
+	echo '<i>Der findes ikke nogle filer knyttet til dette arrangement</i>';
+}else{
+	echo '<ul>';
+	while($file=mysql_fetch_array($files)){
+		echo '<li><a href="upload/'.$file['eventId'].'_'.$file['title'].'">'.$file['title'].'</a>('.($file['size']/1024).' kb)</li>';
+	}
+	echo '</ul>';
 }
 
 foot();
