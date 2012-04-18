@@ -31,14 +31,13 @@ if ($_FILES["file"]["error"] > 0){
 	$title = mysql_real_escape_string($_FILES["file"]["name"]);
 	$type = mysql_real_escape_string($_FILES["file"]["type"]);
     $size = mysql_real_escape_string($_FILES["file"]["size"]);
-	$pathName = mysql_real_escape_string($_FILES["file"]["tmp_name"]);
 
-	move_uploaded_file($pathName, 'upload/'.$eventId.'_'.$title);
+	move_uploaded_file($_FILES['file']['tmp_name'], 'upload/'.$eventId.'_'.$title);
 	
-	$uploadQuery = 'INSERT INTO `file` (eventId, uploaderId, title, type, size, pathName) VALUE ("'.$eventId.'", "'.loginId().'", "'.$title.'", "'.$type.'", "'.$size.'", "'.$pathName.'");';
+	$uploadQuery = 'INSERT INTO `file` (eventId, uploaderId, title, type, size) VALUE ("'.$eventId.'", "'.loginId().'", "'.$title.'", "'.$type.'", "'.$size.'");';
 	$upload = mysql_query($uploadQuery);
-
 	header('Location: editEvent.php?id='.$_POST['id'].'&error=5');
+	
 }
 
 //echo 'Fil uploadet';
