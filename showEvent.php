@@ -97,7 +97,7 @@ if(loginId() == $row['organizer'] || loginAdmin()){
 
 
 //Files
-echo'<h3>Documenter</h3>';
+echo'<h3>Dokumenter</h3>';
 
 $findFiles = 'SELECT * FROM `file` WHERE `eventId` = "'.$_GET['id'].'";';
 $files = mysql_query($findFiles) or die(mysql_error());
