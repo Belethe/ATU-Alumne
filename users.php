@@ -44,10 +44,10 @@ echo'<table>';
 						<input type="hidden" name="userId" value="<?php echo $row['id']; ?>"/>
 						<input type="submit" value="Gør til admin"/>
 					</form>
-				<? } ?>
+				<?php } ?>
 				</td>
 				<?php
-			}	
+			}
 		echo'</tr>';
 	}
 echo'</table>';
