@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Vært: localhost
--- Genereringstid: 24. 04 2012 kl. 23:47:58
+-- Genereringstid: 29. 03 2012 kl. 22:46:10
 -- Serverversion: 5.1.61
 -- PHP-version: 5.3.6-13ubuntu3.6
 
@@ -19,6 +19,8 @@ SET time_zone = "+00:00";
 --
 -- Database: `alumne`
 --
+CREATE DATABASE `alumne` DEFAULT CHARACTER SET utf8 COLLATE utf8_danish_ci;
+USE `alumne`;
 
 -- --------------------------------------------------------
 
@@ -37,30 +39,26 @@ CREATE TABLE IF NOT EXISTS `event` (
   `description` text COLLATE utf8_danish_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `organizer` (`organizer`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `file`
+-- Struktur-dump for tabellen/Structure-dump for the table `file`
 --
 
 CREATE TABLE IF NOT EXISTS `file` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `eventId` int(10) unsigned NOT NULL,
-  `uploaderId` int(10) unsigned NOT NULL,
   `title` varchar(255) COLLATE utf8_danish_ci NOT NULL,
-  `type` varchar(256) COLLATE utf8_danish_ci NOT NULL,
-  `size` int(20) NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `eventId` (`eventId`),
-  KEY `uploaderId` (`uploaderId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci AUTO_INCREMENT=19 ;
+  KEY `eventId` (`eventId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `subscribe`
+-- Struktur-dump for tabellen/Structure-dump for the table `subscribe`
 --
 
 CREATE TABLE IF NOT EXISTS `subscribe` (
@@ -75,7 +73,7 @@ CREATE TABLE IF NOT EXISTS `subscribe` (
 -- --------------------------------------------------------
 
 --
--- Struktur-dump for tabellen `user`
+-- Struktur-dump for tabellen/Structure-dump for the table `user`
 --
 
 CREATE TABLE IF NOT EXISTS `user` (
@@ -91,24 +89,23 @@ CREATE TABLE IF NOT EXISTS `user` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_danish_ci AUTO_INCREMENT=6 ;
 
 --
--- Begrænsninger for dumpede tabeller
+-- Begrænsninger for dumpede tabeller/Restrictions for dumped tables
 --
 
 --
--- Begrænsninger for tabel `event`
+-- Begrænsninger for tabel/Restriction for table `event`
 --
 ALTER TABLE `event`
   ADD CONSTRAINT `event_ibfk_1` FOREIGN KEY (`organizer`) REFERENCES `user` (`id`);
 
 --
--- Begrænsninger for tabel `file`
+-- Begrænsninger for tabel/Restriction for table `file`
 --
 ALTER TABLE `file`
-  ADD CONSTRAINT `file_ibfk_1` FOREIGN KEY (`eventId`) REFERENCES `event` (`id`),
-  ADD CONSTRAINT `file_ibfk_2` FOREIGN KEY (`uploaderId`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `file_ibfk_1` FOREIGN KEY (`eventId`) REFERENCES `event` (`id`);
 
 --
--- Begrænsninger for tabel `subscribe`
+-- Begrænsninger for tabel/Restriction for table `subscribe`
 --
 ALTER TABLE `subscribe`
   ADD CONSTRAINT `subscribe_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`),
